@@ -11,7 +11,6 @@ namespace _1.Homework
         static void Main(string[] args)
         {
             //Ввести с консоли 2 числа. Вывести их сумму на консоль.
-
             Console.WriteLine("Введите первое число для сложения:");
             int a1 = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите второе число для сложения:");
@@ -48,11 +47,14 @@ namespace _1.Homework
             Console.WriteLine();
 
             Console.WriteLine("После обнуления последнего бита в двоичной системе получается:");
-            System.Console.WriteLine(Convert.ToString(a3 >> 1, 2));
+            a3 = a3 >> 1;
+            a3 = a3 << 1;
+
+            System.Console.WriteLine(Convert.ToString(a3, 2));
             Console.WriteLine();
 
             Console.WriteLine("И это получается число:");
-            System.Console.WriteLine(a3 >> 1);
+            System.Console.WriteLine(a3);
         }
     }
 }
