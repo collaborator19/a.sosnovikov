@@ -11,20 +11,37 @@ namespace Homework_3._1
         static void Main(string[] args)
         {
             //Считать строку с консоли. Создать словарь, где ключом будет
-            //символ строки, а значением - количество данных символов в
+            //символ строки, а значением - количество ЭТИХ символов в
             //считанной строке.
             Console.WriteLine("Введите строку с консоли:");
             string stringFromConsole = Console.ReadLine();
 
-            int lenghtStringFromConsole = stringFromConsole.Length;
-            Console.WriteLine("\n" + "Длина строки:" + "\n" + lenghtStringFromConsole + "\n");
+            Console.WriteLine("\n" + "Длина строки:" + "\n" + stringFromConsole.Length + "\n");
 
-            for (int i = 0; i < lenghtStringFromConsole; i++)
+            Dictionary<char, int> dictionaryStringFromConsole = new Dictionary<char, int>();
+
+            for (int i = 0; i < stringFromConsole.Length; i++)
             {
-                Dictionary<char, int> dictionaryStringFromConsole = new Dictionary<char, int>();
-                dictionaryStringFromConsole.Add(stringFromConsole[i], lenghtStringFromConsole);
+                int counter = 0;
+                for (int j = 0; j < stringFromConsole.Length; j++)
+                {
+                    if (stringFromConsole[i] == stringFromConsole[j])
+                    {
+                        counter++;
+                    }
+                }
+                //Пришлось сделать вывод только уникального ключа, поскольку он повторяется
+                //и даёт ошибку на неуникальность, если >1 одинакового символа.
+                if (!dictionaryStringFromConsole.ContainsKey(stringFromConsole[i]))
+                {
+                    dictionaryStringFromConsole.Add(stringFromConsole[i], counter);
+                }
+            }
 
-                Console.WriteLine("Ключ: " + stringFromConsole[i] + " Значение: " + dictionaryStringFromConsole[stringFromConsole[i]]);
+            //Вывод словаря
+            foreach (KeyValuePair<char, int>KeyValuePair in dictionaryStringFromConsole)
+            {
+                Console.WriteLine("Ключ: " + KeyValuePair.Key + " Значение: " + KeyValuePair.Value);
             }
         }
     }
